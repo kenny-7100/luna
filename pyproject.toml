@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling>=1.26,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "luna-personal-agent"
+version = "0.1.0"
+description = "Personal agent workspace, knowledge, and reusable tools"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+luna = "luna.cli:main"
+
+[dependency-groups]
+dev = ["ruff>=0.11,<1"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/luna"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

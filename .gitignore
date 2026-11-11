@@ -1,0 +1,23 @@
+# Local environments and build output
+.venv/
+__pycache__/
+*.py[cod]
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+.DS_Store
+
+# Secrets and machine-specific state
+.env
+.env.*
+!.env.example
+.local/*
+!.local/.gitkeep
+
+# Task material may contain private data or nested repositories
+workspaces/*
+!workspaces/README.md
