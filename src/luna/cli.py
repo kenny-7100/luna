@@ -1,6 +1,7 @@
 """Local project tools."""
 
 import argparse
+import sys
 from pathlib import Path
 
 REQUIRED_FILES = (
@@ -32,8 +33,14 @@ def check_project(root: Path) -> list[str]:
 
 
 def main(argv: list[str] | None = None) -> int:
+    argv = sys.argv[1:] if argv is None else argv
+    if argv and argv[0] == "tg":
+        from luna.telegram import main as telegram_main
+
+        return telegram_main(argv[1:])
     parser = argparse.ArgumentParser(description="Luna 本地工具")
     subparsers = parser.add_subparsers(dest="command", required=True)
+    subparsers.add_parser("tg", help="Telegram 消息读取、草稿及经确认的发送")
     doctor = subparsers.add_parser("doctor", help="检查本地项目结构（不连接外部服务）")
     doctor.add_argument("--root", type=Path, default=Path.cwd(), help="项目根目录，默认当前目录")
     observe = subparsers.add_parser("observe", help="本机工作切片采集")
