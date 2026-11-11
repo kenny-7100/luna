@@ -1,6 +1,6 @@
 # 任务工作区
 
-创建 `workspaces/<清晰任务名>/`，例如 `workspaces/github-review-helper/`。当前按手工创建与助手操作管理；尚无创建命令。
+需要任务文件或跨会话恢复时，创建 `workspaces/<清晰任务名>/`，例如 `workspaces/github-review-helper/`。简单任务直接执行，不强制建目录或记录进度。当前按手工创建与助手操作管理；尚无创建命令。
 
 ```text
 <任务名>/

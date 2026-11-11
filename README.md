@@ -23,7 +23,7 @@ uv run python -m unittest discover -s tests
 ```text
 AGENTS.md           高频协作规则，供后续会话读取
 docs/               稳定入口、方法和架构说明
-  knowledge/        平铺、版本化的长期知识与维护日志
+  knowledge/        平铺的长期经验与方法，由 Git 留存历史
   assets/           知识附件（平铺，按主题命名）
 src/luna/           可复用 Python 工具和命令入口
 tests/              有实际行为需要验证时添加的测试
