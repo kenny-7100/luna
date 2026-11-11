@@ -4,7 +4,7 @@
 
 Codex 是执行和判断的主体；Luna 是供 Codex 使用的长期知识库、方法、工具与工作区，不另建独立 Agent。持续协作围绕 Codex 展开，Python 主要用于补充可调用的工具。
 
-当前已提供协作约定、文档与知识库、工作区规范、Python 包与本地检查命令。持续运行服务和外部账号集成尚未实现。
+当前已提供协作约定、文档与知识库、工作区规范、Python 工具和 macOS 本地工作切片采集。独立外部账号集成与自动触发 Codex 持续理解尚未实现。
 
 ## 开始使用
 
@@ -17,6 +17,8 @@ uv run ruff check .
 uv run ruff format --check .
 uv run python -m unittest discover -s tests
 ```
+
+工作切片采集见 [观察工具使用说明](docs/observation.md#已实现的工作切片工具)。
 
 `doctor` 只检查本地项目结构，不连接外部服务；失败时返回非零退出码。在其他目录可运行 `uv run --project /path/to/luna luna doctor --root /path/to/luna`。
 

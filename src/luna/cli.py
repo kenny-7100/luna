@@ -1,4 +1,4 @@
-"""Local project checks; no network access or background execution."""
+"""Local project tools."""
 
 import argparse
 from pathlib import Path
@@ -36,7 +36,26 @@ def main(argv: list[str] | None = None) -> int:
     subparsers = parser.add_subparsers(dest="command", required=True)
     doctor = subparsers.add_parser("doctor", help="检查本地项目结构（不连接外部服务）")
     doctor.add_argument("--root", type=Path, default=Path.cwd(), help="项目根目录，默认当前目录")
+    observe = subparsers.add_parser("observe", help="本机工作切片采集")
+    observe.add_argument("action", choices=["start", "status", "stop", "report"])
+    observe.add_argument("--root", type=Path, default=Path.cwd())
+    observe.add_argument("--interval", type=float, default=2)
+    observe.add_argument("--visual-interval", type=float, default=4)
     args = parser.parse_args(argv)
+    if args.command == "observe":
+        from luna.observation import main as observation_main
+
+        return observation_main(
+            [
+                args.action,
+                "--root",
+                str(args.root),
+                "--interval",
+                str(args.interval),
+                "--visual-interval",
+                str(args.visual_interval),
+            ]
+        )
     try:
         issues = check_project(args.root.resolve())
     except (OSError, UnicodeError) as error:
@@ -46,5 +65,5 @@ def main(argv: list[str] | None = None) -> int:
         for issue in issues:
             print(f"FAIL {issue}")
         return 1
-    print("OK 本地项目结构完整。后台服务与外部集成尚未启用。")
+    print("OK 本地项目结构完整。此检查不验证观察器运行或外部集成状态。")
     return 0

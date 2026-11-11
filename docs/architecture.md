@@ -4,7 +4,7 @@
 
 Codex 是唯一既定的 Agent 主体，负责理解、判断、规划和使用工具。Luna 提供可持续维护的知识、方法、脚本和任务上下文；Python 用来实现供 Codex 调用的工具，不承担另一套 Agent 内核。
 
-Python 包 `src/luna/` 暴露 `luna` 命令。当前只有 `doctor` 子命令，检查本地基础结构。Markdown 保存长期上下文与规则，Git 提供变更审阅和历史；任务工作区及 `.local/` 留在本地。
+Python 包 `src/luna/` 暴露 `luna` 命令：`doctor` 检查基础结构，`observe` 管理本机工作切片采集。`tools/observe.swift` 是读取 macOS 辅助功能、截图和 Vision OCR 的确定性传感器，按需编译到 `.local/`；Python 负责进程、采样与文件记录，不调用模型。Markdown 保存长期上下文与规则，Git 提供变更审阅和历史；任务工作区及 `.local/` 留在本地。
 
 ## 初始选型
 
