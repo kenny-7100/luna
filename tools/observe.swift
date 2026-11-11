@@ -29,7 +29,9 @@ func strings(_ root: AXUIElement) -> [String] {
 var output: [String: Any] = [
     "screen_permission": CGPreflightScreenCaptureAccess(),
     "accessibility_permission": AXIsProcessTrusted(),
-    "idle_seconds": CGEventSource.secondsSinceLastEventType(.combinedSessionState, eventType: .null)
+    "idle_seconds": CGEventSource.secondsSinceLastEventType(
+        .combinedSessionState, eventType: CGEventType(rawValue: UInt32.max)!
+    )
 ]
 let session = CGSessionCopyCurrentDictionary() as? [String: Any] ?? [:]
 let locked = session["CGSSessionScreenIsLocked"] as? Bool ?? false
